@@ -12,7 +12,12 @@ then
   #echo "INSTALL TREE"
   yum -y install tree
   #echo "INSTALL unzip curl wget lsof"
-  yum  -y install unzip curl wget lsof
+  yum  -y install unzip curl wget lsof 
+  # install sysstat
+  yum -y sysstat
+  systemctl start sysstat
+  systemctl enable sysstat
+
 
   # https://gist.github.com/Ch4s3/d2270e8f3d30cadcce859b84d707c794 install-postgres-9.6-centos7.md
   rpm -Uvh https://yum.postgresql.org/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm
