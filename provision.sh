@@ -25,6 +25,9 @@ then
   yum -y install postgresql10-server postgresql10
   #yum -y install postgresql96 postgresql96-server postgresql96-libs postgresql96-contrib postgresql96-devel
   #/usr/pgsql-9.6/bin/postgresql96-setup initdb
+  cp /vagrant/pg_hba.conf /tmp/pg_hba.conf
+  su -c "cp -p /var/lib/pgsql/10/data/pg_hba.conf /var/lib/pgsql/10/data/pg_hba.conf.`date '+%Y%m%d-%H%M'`.bak" -s /bin/sh postgres
+  su -c "cat /tmp/pg_hba.conf > /var/lib/pgsql/10/data/pg_hba.conf" -s /bin/sh postgres
   /usr/pgsql-10/bin/postgresql-10-setup initdb
   systemctl enable postgresql-10.service
   systemctl start postgresql-10.service 
