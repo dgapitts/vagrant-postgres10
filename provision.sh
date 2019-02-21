@@ -21,10 +21,8 @@ then
 
   # https://gist.github.com/Ch4s3/d2270e8f3d30cadcce859b84d707c794 install-postgres-9.6-centos7.md
   rpm -Uvh https://yum.postgresql.org/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm
-  #yum -y update
+  yum -y update
   yum -y install postgresql10-server postgresql10
-  #yum -y install postgresql96 postgresql96-server postgresql96-libs postgresql96-contrib postgresql96-devel
-  #/usr/pgsql-9.6/bin/postgresql96-setup initdb
   cp /vagrant/pg_hba.conf /tmp/pg_hba.conf
   su -c "cp -p /var/lib/pgsql/10/data/pg_hba.conf /var/lib/pgsql/10/data/pg_hba.conf.`date '+%Y%m%d-%H%M'`.bak" -s /bin/sh postgres
   su -c "cat /tmp/pg_hba.conf > /var/lib/pgsql/10/data/pg_hba.conf" -s /bin/sh postgres
@@ -32,7 +30,7 @@ then
   systemctl enable postgresql-10.service
   systemctl start postgresql-10.service 
 
-
+  
 
 else
   echo "already installed flag set : /home/vagrant/already-installed-flag"
