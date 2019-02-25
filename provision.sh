@@ -38,6 +38,8 @@ then
 
   # install pgbouncer (setup to be completed)
   yum -y install pgbouncer
+  cp /vagrant/pgbouncer.ini /etc/pgbouncer/pgbouncer.ini
+  cp /vagrant/userlist.txt /etc/pgbouncer/userlist.txt
   
 
 else
