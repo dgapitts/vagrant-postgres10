@@ -23,15 +23,16 @@ then
   rpm -Uvh https://yum.postgresql.org/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm
   yum -y update
   yum -y install postgresql10-server postgresql10
+  yum -y install postgresql10-contrib postgresql10-libs postgresql10-devel
  
   # Extra packages and devtool for install of https://github.com/ossc-db/pg_plan_advsr  
-  yum -y install postgresql-devel
+  #yum -y install postgresql-devel
   yum -y install gcc
 
   # setup pg_hba.conf and start pg10
   cp /vagrant/pg_hba.conf /tmp/pg_hba.conf
-  su -c "cp -p /var/lib/pgsql/10/data/pg_hba.conf /var/lib/pgsql/10/data/pg_hba.conf.`date '+%Y%m%d-%H%M'`.bak" -s /bin/sh postgres
-  su -c "cat /tmp/pg_hba.conf > /var/lib/pgsql/10/data/pg_hba.conf" -s /bin/sh postgres
+  #su -c "cp -p /var/lib/pgsql/10/data/pg_hba.conf /var/lib/pgsql/10/data/pg_hba.conf.`date '+%Y%m%d-%H%M'`.bak" -s /bin/sh postgres
+  #su -c "cat /tmp/pg_hba.conf > /var/lib/pgsql/10/data/pg_hba.conf" -s /bin/sh postgres
   /usr/pgsql-10/bin/postgresql-10-setup initdb
   systemctl enable postgresql-10.service
   systemctl start postgresql-10.service 
