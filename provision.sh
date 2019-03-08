@@ -42,6 +42,31 @@ then
   cp /vagrant/pgbouncer.ini /etc/pgbouncer/pgbouncer.ini
   cp /vagrant/userlist.txt /etc/pgbouncer/userlist.txt
   
+  # Postgres adapter for Python
+  yum -y install python-psycopg2
+  
+  # setup environment variables and extra alias for postgres user
+  cat /vagrant/bashrc.append.txt >> /var/lib/pgsql/.bash_profile
+  echo 'export PATH="$PATH:/usr/pgsql-10/bin"' >> /var/lib/pgsql/.bash_profile
+
+
+  # setup help files
+
+  cp /vagrant/update_alluser_passwords_from_changeme.* /tmp
+  su -c "cp -p /tmp/update_alluser_passwords_from_changeme.* ~" -s /bin/sh postgres
+  su -c "chmod 700 ~/update_alluser_passwords_from_changeme.sh"  -s /bin/sh postgres
+  su -c "~/update_alluser_passwords_from_changeme.sh <new-secure-password>" -s /bin/sh postgres
+
+  sudo cat /vagrant/environment >> /etc/environment
+  cp /vagrant/quick-start-setup-pg-ora-demo-scripts.sh /tmp
+  cp /vagrant/quick-start-setup-pg-ora-demo-scripts.sql /tmp
+  su -c "cp -p /tmp/quick-start-setup-pg-ora-demo-scripts.* ~" -s /bin/sh postgres
+  su -c "chmod 700 ~/quick-start-setup-pg-ora-demo-scripts.sh"  -s /bin/sh postgres
+  cp /vagrant/update_alluser_passwords_from_changeme.sh /tmp
+  cp /vagrant/update_alluser_passwords_from_changeme.sql /tmp
+  su -c "cp -p /tmp/update_alluser_passwords_from_changeme.* ~" -s /bin/sh postgres
+  su -c "chmod 700 ~/update_alluser_passwords_from_changeme.sh"  -s /bin/sh postgres
+
 
 else
   echo "already installed flag set : /home/vagrant/already-installed-flag"
