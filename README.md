@@ -12,9 +12,9 @@ Please see https://github.com/dgapitts/vagrant-postgres9.6 for more details
 53 23 * * * /usr/lib64/sa/sa2 -A
 ```
 
-### Before running quick-start-setup-pg-ora-demo-scripts.sh
+### Manually running quick-start-setup-pg-ora-demo-scripts.sh
 
-
+First let's review this setup script:
 ```
 [root@pg10centos7 ~]# cat /vagrant/quick-start-setup-pg-ora-demo-scripts.sh
 su -c "cd ~;pwd;git clone https://github.com/dgapitts/pg-ora-demo-scripts.git;ls -l pg-ora-demo-scripts" -s /bin/sh postgres
@@ -23,6 +23,23 @@ cp /vagrant/pgpass /tmp/pgpass
 su -c "psql postgres -f /tmp/quick-start-setup-pg-ora-demo-scripts.sql" -s /bin/sh postgres
 su -c "cat /tmp/pgpass >> ~/.pgpass" -s /bin/sh postgres
 su -c "chmod 600 ~/.pgpass" -s /bin/sh postgres
+```
+
+Now stepping through manually, first you need to setup an ssh-key for the postgres user and upload it to github:
+
+```
+cd ~
+ssh-keygen
+cat ~/.ssh/id_rsa.pub
+<< copy results into your https://github.com/settings/profile - SSH >>
+```
+
+i.e. as per https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+	
+
+Next as root 
+
+```
 [root@pg10centos7 ~]# su -c "cd ~;pwd;git clone https://github.com/dgapitts/pg-ora-demo-scripts.git;ls -l pg-ora-demo-scripts" -s /bin/sh postgres
 /var/lib/pgsql
 Cloning into 'pg-ora-demo-scripts'...
