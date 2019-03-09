@@ -1,9 +1,9 @@
-== Quick Intro ==
+## Quick Intro
 
 This project is a pg10/centos-7 version of vagrant-postgres9.6 (also centos 7)
 Please see https://github.com/dgapitts/vagrant-postgres9.6 for more details
 
-=== Extra manual steps for root sar crontab ===
+### Extra manual steps for root sar crontab 
 
 ```
 # run system activity accounting tool every 1 minutes

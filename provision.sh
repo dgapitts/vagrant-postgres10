@@ -14,7 +14,7 @@ then
   #echo "INSTALL unzip curl wget lsof"
   yum  -y install unzip curl wget lsof 
   # install sysstat
-  yum -y sysstat
+  yum -y install sysstat
   systemctl start sysstat
   systemctl enable sysstat
 
