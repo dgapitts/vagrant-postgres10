@@ -20,7 +20,10 @@ then
 
 
   # Regular pg10 install                                                                           
-  rpm -Uvh https://yum.postgresql.org/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm
+  # As of 15 April 2019, there is only one repository RPM per distro, and it includes repository information for all available PostgreSQL releases.
+  rpm -ivh https://yum.postgresql.org/9.6/redhat/rhel-7.3-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+  #rpm -Uvh https://yum.postgresql.org/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm
+
   yum -y update
   yum -y install postgresql10-server postgresql10
   yum -y install postgresql10-contrib postgresql10-libs postgresql10-devel
