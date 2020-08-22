@@ -4,3 +4,5 @@ cp /vagrant/pgpass /tmp/pgpass
 su -c "psql postgres -f /tmp/quick-start-setup-pg-ora-demo-scripts.sql" -s /bin/sh postgres
 su -c "cat /tmp/pgpass >> ~/.pgpass" -s /bin/sh postgres
 su -c "chmod 600 ~/.pgpass" -s /bin/sh postgres
+cp /vagrant/bashrc.append.txt /tmp/bashrc.append.txt
+su -c "cat /tmp/bashrc.append.txt >> ~/.bash_profile" -s /bin/sh postgres
